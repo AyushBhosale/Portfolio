@@ -10,8 +10,11 @@ const BrutalBox = ({
   px = "px-6",
   py = "py-2",
   font_family = "font-inter",
-  name, // string, e.g. "Full Stack Developer"
-  roles, // optional string[], e.g. ["Full Stack Developer", "AI/ML Developer", "DevOps Enthusiast"]
+  text_size = "text-3xl",
+  border_width = "border-4",
+  font_weight = "font-extrabold",
+  name,
+  roles,
   animated = false,
   showPrompt = false,
   typingSpeed = 80,
@@ -41,7 +44,7 @@ const BrutalBox = ({
         }
       `}</style>
       <div
-        className={`${font_color} ${bg_color} ${font_family} font-extrabold text-3xl border-4 ${border_color} ${px} ${py} ${shadow_color} inline-flex items-center gap-2`}
+          className={`${font_color} ${bg_color} ${font_family} ${font_weight} ${text_size} ${border_width} ${border_color} ${px} ${py} ${shadow_color} inline-flex items-center gap-2`}
       >
         {showPrompt && <span className="text-blue-500">$</span>}
  
@@ -50,8 +53,8 @@ const BrutalBox = ({
             The cursor lives inside this slot right after the live text,
             so it moves with typing instead of sitting static. */}
         <span
-          className="inline-flex items-center"
-          style={{ width: `${maxLen + 1}ch` }}
+          className="inline-flex items-center justify-center"
+          style={{ width: animated ? `${maxLen + 1}ch` : "auto" }}
         >
           <span className="whitespace-pre">{text}</span>
           {animated && (

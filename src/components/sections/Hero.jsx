@@ -3,6 +3,7 @@ import Name from "../ui/Name.jsx";
 import BrutalBox from "../ui/BrutalBox";
 import Comment from "../ui/Comment";
 import ProfileHero from "../ui/ProfileHero";
+import TypewriterBrutalBox from "../ui/TypewriterBrutalBox.jsx";
 
 const TAGS = [
   { label: "React", bg: "bg-pink-400" },
@@ -29,7 +30,7 @@ export default function Hero({ photoSrc }) {
 
           <Name first_name="Ayush" last_name="Bhosale" />
 
-          <BrutalBox
+          <TypewriterBrutalBox
             showPrompt
             bg_color="bg-white"
             roles={["Full Stack Developer", "Backend Engineer", "AI/ML Engineer", "DevOps Enthuisast"]}
