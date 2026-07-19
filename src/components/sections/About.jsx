@@ -6,15 +6,15 @@ import Comment from "../ui/Comment";
 import StatCard from "../ui/StatCard";
 
 const STATS = [
-  { icon: Clock, value: "6+", label: "Years Experience", bg_color: "bg-yellow-300" },
-  { icon: Rocket, value: "42", label: "Projects Built", bg_color: "bg-lime-400" },
-  { icon: Trophy, value: "9", label: "Hackathons Won", bg_color: "bg-pink-400" },
-  { icon: MapPin, value: "SF", label: "San Francisco, CA", bg_color: "bg-sky-400" },
+  { icon: Clock, value: "2+", label: "Years Experience", bg_color: "bg-yellow-300" },
+  { icon: Rocket, value: "68", label: "Projects Built", bg_color: "bg-lime-400" },
+  { icon: Trophy, value: "2", label: "Hackathons Won", bg_color: "bg-pink-400" },
+  { icon: MapPin, value: "NM", label: "Mumbai, MH", bg_color: "bg-sky-400" },
 ];
 
 export default function About() {
   return (
-    <section className="w-full bg-[#F4F1EA] font-inter px-10 py-16">
+    <section id="about" className="w-full bg-[#F4F1EA] font-inter px-10 py-16">
       <div className="max-w-6xl mx-auto flex flex-col gap-6">
         {/* Sticky-note header, now using BrutalBox itself */}
         <div className="inline-flex flex-col items-start gap-1">
@@ -32,9 +32,10 @@ export default function About() {
             <span className="text-2xl">🧑‍💻</span>
             <h3 className="font-inter font-black text-2xl">The Story</h3>
             <p className="font-inter text-sm leading-relaxed text-black/80">
-              I'm a full stack developer with a soft spot for bold interfaces
-              and rock-solid backends. I turn messy problems into shipped
-              products.
+              It started as a way to not sit idle after my CET exams in 2022. UI/UX, then HTML/CSS/JS, then a semester where I dropped it all and had to relearn what mattered.
+What followed was years of stacking, one hard skill at a time: Python taught at 3 AM, DSA that broke me and that I came back to anyway, a chatbot built from scratch that turned into a real ML foundation, a DeepLearning.AI certification, then React, Node, Django, FastAPI built while leading my college committee as Tech Lead, while chasing internships that mostly said no.
+One did say yes. Then Deloitte cold, then hot, then nervous, then an offer three days after I'd already given up on it.
+That's where I am now: data science and web development, not as two separate skills but one instinct see the problem, build the thing, ship it.
             </p>
             <Comment content="#When I'm not coding, I'm winning hackathons, mentoring juniors, and obsessing over pixel-perfect, tactile UI details." />
           </div>

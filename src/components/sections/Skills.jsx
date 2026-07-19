@@ -11,6 +11,20 @@ import {
   Database,
   Wrench,
   Settings2,
+  Coffee,
+  Zap,
+  Braces,
+  Atom,
+  FileCode,
+  Palette,
+  Layers,
+  Leaf,
+  Network,
+  Boxes,
+  Sparkles,
+  Container,
+  GitMerge,
+  Component,
 } from "lucide-react";
 import BrutalBox from "../ui/BrutalBox";
 import Comment from "../ui/Comment";
@@ -25,6 +39,37 @@ const FILTERS = [
 ];
 
 const SKILLS = [
+  // Languages
+  { key: "python", label: "Python", icon: Code2, iconBg: "bg-yellow-300", category: "languages" },
+  { key: "java", label: "Java", icon: Coffee, iconBg: "bg-lime-400", category: "languages" },
+  { key: "go", label: "Go", icon: Zap, iconBg: "bg-sky-400", category: "languages" },
+  { key: "javascript", label: "JavaScript", icon: Braces, iconBg: "bg-pink-500", category: "languages" },
+
+  // Frontend
+  { key: "react", label: "React.js", icon: Atom, iconBg: "bg-sky-400", category: "frontend" },
+  { key: "html", label: "HTML", icon: FileCode, iconBg: "bg-pink-500", category: "frontend" },
+  { key: "css", label: "CSS", icon: Palette, iconBg: "bg-lime-400", category: "frontend" },
+  { key: "js-frontend", label: "JavaScript", icon: Braces, iconBg: "bg-yellow-300", category: "frontend" },
+
+  // Backend
+  { key: "fastapi", label: "FastAPI", icon: Server, iconBg: "bg-lime-400", category: "backend" },
+  { key: "sqlalchemy", label: "SQLAlchemy", icon: Layers, iconBg: "bg-yellow-300", category: "backend" },
+  { key: "springboot", label: "Spring Boot", icon: Leaf, iconBg: "bg-lime-400", category: "backend" },
+  { key: "django", label: "Django", icon: Component, iconBg: "bg-pink-500", category: "backend" },
+  { key: "go-net-http", label: "net/http (Go)", icon: Network, iconBg: "bg-sky-400", category: "backend" },
+
+  // Database
+  { key: "relational", label: "PostgreSQL / MySQL", icon: Database, iconBg: "bg-yellow-300", category: "database" },
+  { key: "nosql", label: "MongoDB", icon: Boxes, iconBg: "bg-lime-400", category: "database" },
+  { key: "vector", label: "Milvus / Chroma / FAISS", icon: Sparkles, iconBg: "bg-pink-500", category: "database" },
+
+  // Tools
+  { key: "git", label: "Git", icon: GitMerge, iconBg: "bg-yellow-300", category: "tools" },
+  { key: "docker", label: "Docker", icon: Container, iconBg: "bg-sky-400", category: "tools" },
+  { key: "nginx", label: "Nginx", icon: Server, iconBg: "bg-lime-400", category: "tools" },
+  { key: "linux", label: "Linux", icon: TerminalSquare, iconBg: "bg-pink-500", category: "tools" },
+
+  // Other
   {
     key: "ml",
     label: "Machine Learning",
@@ -33,8 +78,8 @@ const SKILLS = [
     category: "other",
   },
   {
-    key: "aws",
-    label: "AWS / Cloud",
+    key: "cloud",
+    label: "Azure / GCP",
     icon: Cloud,
     iconBg: "bg-lime-400",
     category: "other",
@@ -100,12 +145,12 @@ function SkillCard({ label, icon: Icon, iconBg }) {
 }
 
 export default function Skills() {
-  const [activeFilter, setActiveFilter] = useState("other");
+  const [activeFilter, setActiveFilter] = useState("languages");
 
   const visibleSkills = SKILLS.filter((s) => s.category === activeFilter);
 
   return (
-    <section className="w-full bg-[#F4F1EA] font-inter px-10 py-16 border-2 border-black">
+    <section id="skills" className="w-full bg-[#F4F1EA] font-inter px-10 py-16 border-2 border-black">
       <div className="max-w-6xl mx-auto flex flex-col gap-6">
         {/* Header */}
         <BrutalBox

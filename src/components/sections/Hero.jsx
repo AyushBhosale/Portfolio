@@ -14,7 +14,7 @@ const TAGS = [
 
 export default function Hero({ photoSrc }) {
   return (
-    <section className="w-full bg-[#F4F1EA] font-inter px-10 py-16">
+    <section id="home" className="w-full bg-[#F4F1EA] font-inter px-10 py-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left column */}
         <div className="flex flex-col items-start gap-5">

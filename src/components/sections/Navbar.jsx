@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Home,
   User,
   Briefcase,
   Code2,
   FolderOpen,
-  Trophy,
   GraduationCap,
   Mail,
   TerminalSquare,
@@ -14,15 +13,17 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Home", icon: Home, active: true },
-  { label: "About", icon: User },
-  { label: "Experience", icon: Briefcase },
-  { label: "Skills", icon: Code2 },
-  { label: "Projects", icon: FolderOpen },
-  { label: "Achievements", icon: Trophy },
-  { label: "Education", icon: GraduationCap },
-  { label: "Contact", icon: Mail },
+  { id: "home", label: "Home", icon: Home },
+  { id: "about", label: "About", icon: User },
+  { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "skills", label: "Skills", icon: Code2 },
+  { id: "projects", label: "Projects", icon: FolderOpen },
+  { id: "education", label: "Education", icon: GraduationCap },
+  { id: "contact", label: "Contact", icon: Mail },
 ];
+
+// Adjust this to match your fixed navbar height (px)
+const SCROLL_OFFSET = 72;
 
 function NavButton({ label, icon: Icon, active, iconOnly = false, onClick }) {
   return (
@@ -46,6 +47,44 @@ function NavButton({ label, icon: Icon, active, iconOnly = false, onClick }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
+
+  const scrollToSection = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top, behavior: "smooth" });
+    setActiveId(id);
+    setOpen(false);
+  }, []);
+
+  // Track active section while scrolling
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.id);
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: `-${SCROLL_OFFSET}px 0px -60% 0px`,
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav className="w-full bg-[#F4F1E8] border-b-[3px] border-black relative z-50">
@@ -60,21 +99,32 @@ export default function Navbar() {
           </span>
         </div>
 
-        {/* Desktop nav: full labels, xl and up */}
+        {/* Desktop nav */}
         <div className="hidden xl:flex items-center gap-1">
           {navItems.map((item) => (
-            <NavButton key={item.label} {...item} />
+            <NavButton
+              key={item.id}
+              {...item}
+              active={activeId === item.id}
+              onClick={() => scrollToSection(item.id)}
+            />
           ))}
         </div>
 
-        {/* Tablet nav: icons only, md to xl */}
+        {/* Tablet nav: icons only */}
         <div className="hidden md:flex xl:hidden items-center gap-0.5">
           {navItems.map((item) => (
-            <NavButton key={item.label} {...item} iconOnly />
+            <NavButton
+              key={item.id}
+              {...item}
+              iconOnly
+              active={activeId === item.id}
+              onClick={() => scrollToSection(item.id)}
+            />
           ))}
         </div>
 
-        {/* Mobile hamburger, below md */}
+        {/* Mobile hamburger */}
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -92,9 +142,10 @@ export default function Navbar() {
         <div className="md:hidden border-t-[3px] border-black bg-[#F4F1E8] px-4 py-3 flex flex-col gap-2">
           {navItems.map((item) => (
             <NavButton
-              key={item.label}
+              key={item.id}
               {...item}
-              onClick={() => setOpen(false)}
+              active={activeId === item.id}
+              onClick={() => scrollToSection(item.id)}
             />
           ))}
         </div>

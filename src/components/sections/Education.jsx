@@ -127,7 +127,7 @@ function EducationCard({ institution, location, years, degree, score, scoreColor
 
 export default function Education() {
   return (
-    <section className="w-full bg-[#F4F1EA] font-inter px-10 py-16 border-2 border-black">
+    <section id="education" className="w-full bg-[#F4F1EA] font-inter px-10 py-16 border-2 border-black">
       <div className="max-w-6xl mx-auto flex flex-col gap-6">
         <BrutalBox
           name="Education"

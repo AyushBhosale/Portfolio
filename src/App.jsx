@@ -6,6 +6,7 @@ import About from './components/sections/About'
 import Skills from './components/sections/Skills'
 import Projects from './components/sections/Projects'
 import Education from './components/sections/Education'
+import Contact from './components/sections/Contact'
 // #F7F6F0
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Skills/>
       <Projects/>
       <Education/>
+      <Contact/>
     </>
   )
 }
