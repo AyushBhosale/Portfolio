@@ -7,13 +7,14 @@ import Skills from './components/sections/Skills'
 import Projects from './components/sections/Projects'
 import Education from './components/sections/Education'
 import Contact from './components/sections/Contact'
+import desperatePhoto from "./assets/images/desperate.jpg";
 // #F7F6F0
 function App() {
 
   return (
     <>
       <Navbar/>
-      <Hero photoSrc={'src/assets/images/desperate.jpg'}/>
+      <Hero photoSrc={desperatePhoto} />
       <About/>
       <Skills/>
       <Projects/>
